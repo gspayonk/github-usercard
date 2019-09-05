@@ -1,17 +1,30 @@
 /* Step 1: using axios, send a GET request to the following URL 
-           (replacing the palceholder with your Github name):
-           https://api.github.com/users/<your name>
+        (replacing the placeholder with your Github name):
+        https://api.github.com/users/gspayonk
 */
+
+// Make a request for a user with a given ID
+axios.get('https://api.github.com/users/gspayonk')
+    .then(data => {
+        const myProfile = data.data;
+        console.log('UserInfo', myProfile);
+        const cards = document.querySelector('.cards');
+        const cardContent = cardMaker(myProfile);
+        console.log(cardContent);
+        cards.appendChild(cardContent);
+    })
+
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
-   github info! You will need to understand the structure of this 
-   data in order to use it to build your component function 
+  github info! You will need to understand the structure of this 
+  data in order to use it to build your component function 
 
-   Skip to Step 3.
+  Skip to Step 3.
 */
+//DATA CHECK - all works like it should!
 
 /* Step 4: Pass the data received from Github into your function, 
-           create a new component and add it to the DOM as a child of .cards
+create a new component and add it to the DOM as a child of .cards
 */
 
 /* Step 5: Now that you have your own card getting added to the DOM, either 
@@ -24,7 +37,26 @@
           user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+const followersArray = ['emilyelri', 'DTJohnson5', 'JameaKidrick', 'DevWarr', 'afialydia', 'umekow', 'abarne', 'bayronpuac', 'seanaleid', 'chelsabeth', 'itava0', 'Wais-A', 'dustinsnoap', 'tetondan', 'dustinmyers', 'justsml', 'luishrd', 'bigknell', ];
+
+
+i = 0;
+
+followersArray.forEach((user, i) => {
+    axios.get(`https://api.github.com/users/${followersArray[i]}`)
+
+    .then(data => {
+        const myProfile = data.data;
+        console.log('UserInfo', myProfile);
+
+        const cards = document.querySelector('.cards');
+        const cardContent = cardMaker(myProfile);
+        console.log(cardContent);
+
+        cards.appendChild(cardContent);
+
+    }), i++;
+});
 
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
@@ -46,10 +78,67 @@ const followersArray = [];
 
 */
 
+//appending components
+const cards = document.querySelector('.cards');
+console.log(cards);
+
+//reusable componenets to pull in data
+function cardMaker(input) {
+    const card = document.createElement('div');
+    const image = document.createElement('img');
+    const cardInfo = document.createElement('div');
+    const name = document.createElement('h3');
+    const userName = document.createElement('p');
+    const location = document.createElement('p');
+    const profile = document.createElement('p');
+    const userURL = document.createElement('a');
+    const followers = document.createElement('p');
+    const following = document.createElement('p');
+    const bio = document.createElement('p');
+
+    //setting up structure of elements
+    card.appendChild(image);
+    card.appendChild(cardInfo);
+    cardInfo.appendChild(name);
+    cardInfo.appendChild(userName);
+    cardInfo.appendChild(location);
+    cardInfo.appendChild(profile);
+    profile.appendChild(userURL);
+    cardInfo.appendChild(followers);
+    cardInfo.appendChild(following);
+    cardInfo.appendChild(bio);
+
+    //setting class names
+    card.classList.add('card');
+    cardInfo.classList.add('card-info');
+    name.classList.add('name');
+    userName.classList.add('username');
+
+    //setting text/image/html context
+    image.src = input.avatar_url;
+    name.textContent = input.name;
+    userName.textContent = input.login;
+    location.textContent = `Location: ${input.location}`;
+    userURL.href = `${input.html_url}`;
+    userURL.textContent = `Profile: ${input.html_url}`;
+    followers.textContent = `Followers: ${input.followers}`;
+    following.textContent = `Following: ${input.following}`;
+    bio.textContent = `Bio: ${input.bio}`;
+
+
+    //card to console
+    console.log(card)
+
+    return card;
+
+}
+
+
+
 /* List of LS Instructors Github username's: 
-  tetondan
-  dustinmyers
-  justsml
-  luishrd
-  bigknell
+  'tetondan',
+  'dustinmyers',
+  'justsml',
+  'luishrd',
+  'bigknell',
 */
