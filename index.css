@@ -190,7 +190,7 @@ body {
     display: flex;
     border-radius: 5px;
     box-shadow: 0 1px 6px -2px #000;
-    background-color: #FFF;
+    background-color: #CFB479;
     margin-bottom: 30px;
 }
 
@@ -199,6 +199,7 @@ body {
     height: 150px;
     border-radius: 3px;
     margin-right: 20px;
+    border: 2px outset green;
 }
 
 .card .name {
@@ -219,4 +220,10 @@ body {
 .card .contributions {
     display: flex;
     width: 100%;
+    border: 2px outset black;
+}
+
+.card-info {
+    border: 2px solid black;
+    padding: 2px;
 }
