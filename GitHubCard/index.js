@@ -95,6 +95,7 @@ function cardMaker(input) {
     const followers = document.createElement('p');
     const following = document.createElement('p');
     const bio = document.createElement('p');
+    const contributions = document.createElement('img');
 
     //setting up structure of elements
     card.appendChild(image);
@@ -107,6 +108,7 @@ function cardMaker(input) {
     cardInfo.appendChild(followers);
     cardInfo.appendChild(following);
     cardInfo.appendChild(bio);
+    profile.appendChild(contributions);
 
     //setting class names
     card.classList.add('card');
@@ -124,6 +126,8 @@ function cardMaker(input) {
     followers.textContent = `Followers: ${input.followers}`;
     following.textContent = `Following: ${input.following}`;
     bio.textContent = `Bio: ${input.bio}`;
+
+
 
 
     //card to console
