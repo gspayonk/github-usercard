@@ -115,6 +115,7 @@ function cardMaker(input) {
     cardInfo.classList.add('card-info');
     name.classList.add('name');
     userName.classList.add('username');
+    contributions.classList.add('contributions');
 
     //setting text/image/html context
     image.src = input.avatar_url;
@@ -126,6 +127,7 @@ function cardMaker(input) {
     followers.textContent = `Followers: ${input.followers}`;
     following.textContent = `Following: ${input.following}`;
     bio.textContent = `Bio: ${input.bio}`;
+    contributions.src = `http://ghchart.rshah.org/${followersArray[i]}`;
 
 
 
